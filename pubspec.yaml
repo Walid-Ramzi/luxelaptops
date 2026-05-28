@@ -29,6 +29,9 @@ flutter:
     - lib/assets/product-nimbus.jpg
     - lib/assets/product-vanguard.jpg
     - lib/assets/video-thermal.jpg
+    - lib/assets/fonts/inter.ttf
+    - lib/assets/fonts/JetBrainsMono.ttf
+    - lib/assets/fonts/ArchivoBlack.ttf
 
   fonts:
     - family: inter
