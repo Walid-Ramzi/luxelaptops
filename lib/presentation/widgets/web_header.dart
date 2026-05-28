@@ -171,7 +171,7 @@ class _NavLinkState extends State<_NavLink> {
           style: TextStyle(
             fontWeight: widget.active ? FontWeight.w700 : FontWeight.w500,
             fontSize: 15,
-            fontFamily: "inter",
+            //fontFamily: "inter",
           ),
         ),
       ),

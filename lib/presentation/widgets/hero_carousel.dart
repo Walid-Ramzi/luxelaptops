@@ -156,7 +156,7 @@ class _SlideView extends StatelessWidget {
                     style: const TextStyle(
                       color: AppColors.primary,
                       fontSize: 13,
-                      fontFamily: "inter",
+                      //fontFamily: "inter",
                       fontWeight: FontWeight.w700,
                       letterSpacing: 1.4,
                     ),
@@ -168,7 +168,7 @@ class _SlideView extends StatelessWidget {
                           fontWeight: FontWeight.w800,
                           height: 1.1,
                           fontSize: 45,
-                          fontFamily: "inter",
+                          //fontFamily: "inter",
                           color: Colors.white,
                         ),
                   ),
@@ -179,7 +179,7 @@ class _SlideView extends StatelessWidget {
                       slide.subtitle,
                       style: const TextStyle(
                         fontSize: 16,
-                        fontFamily: "inter",
+                        //fontFamily: "inter",
                         height: 1.55,
                         color: AppColors.textSecondary,
                       ),
@@ -244,7 +244,7 @@ class _HeroCtaState extends State<_HeroCta> {
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 14,
-              fontFamily: "inter",
+              //fontFamily: "inter",
               letterSpacing: 1.1,
               color:
                   widget.filled ? AppColors.background : AppColors.textPrimary,
