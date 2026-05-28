@@ -18,17 +18,16 @@ const List<HeroSlide> heroSlides = [
   HeroSlide(
     overline: 'NEW ARRIVAL / SERIES X',
     title: 'Find Your Perfect Laptop',
-    subtitle:
-        'Precision-engineered hardware for creators and engineers. '
+    subtitle: 'Precision-engineered hardware for creators and engineers. '
         'Discover flagship machines built for performance.',
     imageAsset: AppAssets.heroWorkstation,
   ),
   HeroSlide(
     overline: 'GAMING ELITE / RTX 5090',
-    title: 'Dominate Every Frame',
+    title: 'Studio-grade Performance',
     subtitle:
-        'Desktop-class GPUs, high-refresh mini-LED panels, and advanced cooling '
-        'for uncompromising play.',
+        '64GB DDR5, 4K OLED, and Thunderbolt 5 — the workstation built for rendering,'
+        'compositing, and engineering at scale.',
     imageAsset: AppAssets.heroGaming,
   ),
   HeroSlide(

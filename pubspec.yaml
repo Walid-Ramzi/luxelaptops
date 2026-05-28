@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^6.1.2
-  google_fonts: ^6.2.1
+  google_fonts: ^8.1.0
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
@@ -29,3 +29,14 @@ flutter:
     - lib/assets/product-nimbus.jpg
     - lib/assets/product-vanguard.jpg
     - lib/assets/video-thermal.jpg
+
+  fonts:
+    - family: inter
+      fonts:
+        - asset: lib/assets/fonts/inter.ttf
+    - family: JetBrainsMono
+      fonts:
+        - asset: lib/assets/fonts/JetBrainsMono.ttf
+    - family: ArchivoBlack
+      fonts:
+        - asset: lib/assets/fonts/ArchivoBlack.ttf

@@ -71,8 +71,10 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
         onHomeTap: _scrollToTop,
         onShopTap: () => _scrollToShop(category: 'All'),
         onGamingTap: () => _scrollToShop(category: 'Gaming', nav: 'Gaming'),
-        onBusinessTap: () => _scrollToShop(category: 'Business', nav: 'Business'),
+        onBusinessTap: () =>
+            _scrollToShop(category: 'Business', nav: 'Business'),
         onBudgetTap: () => _scrollToShop(category: 'Budget', nav: 'Budget'),
+        onSearchTap: () => _scrollToShop(category: 'All'),
         searchController: _searchController,
       ),
       body: LayoutBuilder(
@@ -81,42 +83,60 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
             controller: _scrollController,
             thumbVisibility: constraints.maxWidth > 600,
             child: SingleChildScrollView(
-              controller: _scrollController,
-              child: Column(
-                children: [
-                  KeyedSubtree(
-                    key: _topSectionKey,
-                    child: PageContainer(
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 20),
-                          HeroCarousel(
-                            height: constraints.maxWidth > 800 ? 420 : 320,
-                            exploreLabel: AppStrings.t(lang, AppStrings.exploreModel),
-                            viewAllLabel: AppStrings.t(lang, AppStrings.viewAllModels),
-                            onExplore: () => scrollToSection(_featuredSectionKey),
-                            onViewAll: () => _scrollToShop(),
+              scrollDirection: Axis.horizontal,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(
+                    minWidth: AppBreakpoints.minContentWidth),
+                child: SizedBox(
+                  width: constraints.maxWidth < AppBreakpoints.minContentWidth
+                      ? AppBreakpoints.minContentWidth
+                      : constraints.maxWidth,
+                  child: SingleChildScrollView(
+                    controller: _scrollController,
+                    child: Column(
+                      children: [
+                        KeyedSubtree(
+                          key: _topSectionKey,
+                          child: PageContainer(
+                            child: Column(
+                              children: [
+                                const SizedBox(height: 20),
+                                HeroCarousel(
+                                  height:
+                                      constraints.maxWidth > 800 ? 420 : 320,
+                                  exploreLabel: AppStrings.t(
+                                      lang, AppStrings.exploreModel),
+                                  viewAllLabel: AppStrings.t(
+                                      lang, AppStrings.viewAllModels),
+                                  onExplore: () =>
+                                      scrollToSection(_featuredSectionKey),
+                                  onViewAll: () => _scrollToShop(),
+                                ),
+                                const SizedBox(height: 40),
+                              ],
+                            ),
                           ),
-                          const SizedBox(height: 40),
-                        ],
-                      ),
+                        ),
+                        KeyedSubtree(
+                          key: _featuredSectionKey,
+                          child: PageContainer(
+                            child: _FeaturedSection(
+                                lang: lang,
+                                onViewCatalog: () => _scrollToShop()),
+                          ),
+                        ),
+                        const SizedBox(height: 40),
+                        KeyedSubtree(
+                          key: _shopSectionKey,
+                          child: PageContainer(
+                            child: _ShopSection(lang: lang),
+                          ),
+                        ),
+                        const SizedBox(height: 56),
+                      ],
                     ),
                   ),
-                  KeyedSubtree(
-                    key: _featuredSectionKey,
-                    child: PageContainer(
-                      child: _FeaturedSection(lang: lang, onViewCatalog: () => _scrollToShop()),
-                    ),
-                  ),
-                  const SizedBox(height: 40),
-                  KeyedSubtree(
-                    key: _shopSectionKey,
-                    child: PageContainer(
-                      child: _ShopSection(lang: lang),
-                    ),
-                  ),
-                  const SizedBox(height: 56),
-                ],
+                ),
               ),
             ),
           );
@@ -176,7 +196,8 @@ class _FeaturedSection extends StatelessWidget {
             childAspectRatio: 0.68,
           ),
           itemCount: featured.length,
-          itemBuilder: (context, index) => _FeaturedCard(product: featured[index], lang: lang),
+          itemBuilder: (context, index) =>
+              _FeaturedCard(product: featured[index], lang: lang),
         ),
       ],
     );
@@ -202,7 +223,8 @@ class _FeaturedCard extends StatelessWidget {
         cart.addProduct(product);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('${AppStrings.t(lang, AppStrings.addedToCart)}: ${product.name}'),
+            content: Text(
+                '${AppStrings.t(lang, AppStrings.addedToCart)}: ${product.name}'),
             behavior: SnackBarBehavior.floating,
           ),
         );
@@ -241,7 +263,8 @@ class _ShopSection extends StatelessWidget {
         if (products.isLoading)
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 80),
-            child: Center(child: CircularProgressIndicator(color: AppColors.primary)),
+            child: Center(
+                child: CircularProgressIndicator(color: AppColors.primary)),
           )
         else if (useSidebar)
           Row(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 abstract final class AppBreakpoints {
   static const double maxContentWidth = 1280;
   static const double wideSidebar = 900;
+  static const double minContentWidth = 600;
 
   static double horizontalPadding(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;

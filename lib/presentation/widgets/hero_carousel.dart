@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:luxelaptops/core/constants/colors.dart';
+import 'package:luxelaptops/core/layout/responsive.dart';
 import 'package:luxelaptops/data/mock/hero_slides.dart';
 import 'package:luxelaptops/presentation/widgets/asset_image_box.dart';
 
@@ -64,10 +65,13 @@ class _HeroCarouselState extends State<HeroCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(16),
-      child: SizedBox(
-        height: widget.height,
+    return SizedBox(
+      height: 420,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        //child: SizedBox(
+        //height: _responsiveHeight(context),
+        //height: widget.height,
         child: Stack(
           fit: StackFit.expand,
           children: [
@@ -140,7 +144,9 @@ class _SlideView extends StatelessWidget {
           child: Align(
             alignment: Alignment.centerLeft,
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 560),
+              constraints: const BoxConstraints(
+                  // minWidth: AppBreakpoints.minContentWidth
+                  maxWidth: 620),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -149,7 +155,8 @@ class _SlideView extends StatelessWidget {
                     slide.overline,
                     style: const TextStyle(
                       color: AppColors.primary,
-                      fontSize: 12,
+                      fontSize: 13,
+                      fontFamily: "inter",
                       fontWeight: FontWeight.w700,
                       letterSpacing: 1.4,
                     ),
@@ -160,25 +167,33 @@ class _SlideView extends StatelessWidget {
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                           fontWeight: FontWeight.w800,
                           height: 1.1,
+                          fontSize: 45,
+                          fontFamily: "inter",
                           color: Colors.white,
                         ),
                   ),
-                  const SizedBox(height: 14),
-                  Text(
-                    slide.subtitle,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      height: 1.55,
-                      color: AppColors.textSecondary,
+                  const SizedBox(height: 25),
+                  Padding(
+                    padding: const EdgeInsetsGeometry.only(right: 40),
+                    child: Text(
+                      slide.subtitle,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontFamily: "inter",
+                        height: 1.55,
+                        color: AppColors.textSecondary,
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 28),
+                  const SizedBox(height: 35),
                   Wrap(
-                    spacing: 12,
-                    runSpacing: 10,
+                    spacing: 15,
+                    runSpacing: 15,
                     children: [
-                      _HeroCta(label: exploreLabel, filled: true, onTap: onExplore),
-                      _HeroCta(label: viewAllLabel, filled: false, onTap: onViewAll),
+                      _HeroCta(
+                          label: exploreLabel, filled: true, onTap: onExplore),
+                      _HeroCta(
+                          label: viewAllLabel, filled: false, onTap: onViewAll),
                     ],
                   ),
                 ],
@@ -219,7 +234,9 @@ class _HeroCtaState extends State<_HeroCta> {
             borderRadius: BorderRadius.circular(28),
             color: widget.filled
                 ? (_hovered ? AppColors.secondary : AppColors.primary)
-                : (_hovered ? AppColors.cardElevated : Colors.black.withValues(alpha: 0.35)),
+                : (_hovered
+                    ? AppColors.cardElevated
+                    : Colors.black.withValues(alpha: 0.35)),
             border: widget.filled ? null : Border.all(color: AppColors.border),
           ),
           child: Text(
@@ -227,7 +244,10 @@ class _HeroCtaState extends State<_HeroCta> {
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 14,
-              color: widget.filled ? AppColors.background : AppColors.textPrimary,
+              fontFamily: "inter",
+              letterSpacing: 1.1,
+              color:
+                  widget.filled ? AppColors.background : AppColors.textPrimary,
             ),
           ),
         ),
@@ -260,12 +280,16 @@ class _LineIndicators extends StatelessWidget {
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 280),
               margin: const EdgeInsets.symmetric(horizontal: 5),
-              width: active ? 36 : 22,
+              width: active ? 70 : 50,
               height: 3,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(2),
-                color: active ? AppColors.primary : AppColors.textSecondary.withValues(alpha: 0.35),
-                boxShadow: active ? AppColors.neonGlow(AppColors.primary, blur: 6) : null,
+                color: active
+                    ? AppColors.primary
+                    : AppColors.textSecondary.withValues(alpha: 0.35),
+                boxShadow: active
+                    ? AppColors.neonGlow(AppColors.primary, blur: 6)
+                    : null,
               ),
             ),
           );
